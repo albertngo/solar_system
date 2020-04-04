@@ -1,0 +1,270 @@
+@import "reset";
+@import "mixin";
+
+//create the mobile navigation <NAV>-------------------------
+
+nav{
+    position:relative;
+    z-index:100;
+    
+    h1{
+        padding:.5em;
+        background-color: white;
+
+        @include display(700px){
+            width:150px;
+        }
+    }
+
+    @include display(700px){
+        display:flex;
+        flex-direction: row;
+    }
+}
+
+.navigation{
+    position:absolute;
+    width:100%;
+    z-index:1;
+    top:-120px;
+    opacity: 0;
+    background:white;
+
+    @include display(700px){
+        position:static;
+        opacity:1;
+        display:flex;
+        justify-content: end;
+        align-items: center;
+    
+    }
+
+    a{
+        display:block;
+        border-bottom:1px solid black;
+        text-align: center;
+        padding:.5em 0;
+
+        &:hover{
+            background-color: rgba(128, 128, 128, 0.322);
+        }
+        @include display(700px){
+            border:none;
+            padding:1em;
+        }
+
+    }
+    .subMenu{
+        display:none;
+        background-color: rgba(0, 0, 0, 0.815);
+        a{
+            color:white;
+        }
+
+        @include display(700px){
+            position:absolute;
+        }
+    }
+}
+
+.navigation > li:hover .subMenu{
+    display:block;
+
+    @include display(700px){
+        display:inline-flex;
+        flex-wrap:wrap;
+    }
+    
+    
+}
+
+#chk:checked ~ .navigation{
+    top:55px;
+    opacity:1;
+    transition: .3s ease-in;
+}
+
+
+
+
+// create hamburger with pseudo-classes------------------
+
+.burgerline, 
+.burgerline::after, 
+.burgerline::before{
+    width:30px;
+    height: 5px;
+    display:block;
+    background-color: black;
+    position: relative;
+    cursor: pointer;
+
+    @include display(700px){
+        display:none;
+    }
+    
+}
+
+.burgerline::after{
+    content:"";
+    position: absolute;
+    top:10px;
+}
+
+.burgerline::before{
+    content:"";
+    position: absolute;
+    top:-10px;
+}
+
+.burgerline{ 
+    float:right;
+    right:15px;
+    top:-30px;
+}
+
+input{
+    visibility: hidden;
+    position: absolute;
+}
+
+//intro background ----------------------------
+
+.intro-bg{
+    background-color: grey;
+    width:100vw;
+    // max-height:400px;
+    height:100vh;
+    background-image: url(../images/planets/background3.jpg);
+    background-size: cover;
+    background-position:center;
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+
+    h2{
+        margin:0 auto;
+        color:white;
+        margin-bottom:120px;
+        padding:1em;
+        background-color: rgba(128, 128, 128, 0.281);
+        border-radius: .4em;
+        @include fluid-type(20px, 25px, 400px, 1200px);
+   
+    }
+}
+
+//create the grid for the gallery -----------------------------
+img{
+    width:100%;
+}
+.gallery{
+    margin:10px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-auto-flow: dense;
+    gap:10px;
+
+    .gallery__item{
+        position:relative;
+        background-color: black;
+        display:flex;
+        align-items: center;
+    }
+    .sunCard{
+        grid-column: 1/2;
+        grid-row:1/4;
+    } 
+}
+
+.itemDesc{
+    position:absolute;
+    background-color: rgba(128, 128, 128, .7);
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    display:none;
+    h1,h2,p{
+        padding-left:30px;
+    }
+    h1{
+        text-decoration: underline;
+        @include fluid-type(20px, 25px, 400px, 1200px);
+        
+    }
+    h2{
+        // text-decoration: underline;
+        font-size:20px;
+    }
+    p{
+        @include fluid-type(16px, 20px, 400px, 1200px);
+    
+    }
+}
+
+.gallery__item:hover .itemDesc{
+    display:flex;
+    opacity:1;
+    transition: opacity 1s;
+}
+
+//extra Info----------------------------------------------
+
+.extraContainer{
+    display:grid;
+    gap:10px;
+    grid-template-columns: 1fr;
+
+    @include display(1200px){
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    h1,p{
+        color:white;
+        line-height:1.8em;
+        
+    }
+    h1{
+        margin-bottom:1em;
+        padding:5px 10px;
+        border-radius: 3px;
+        width:fit-content;
+        background-color: rgba(128, 128, 128, 0.637);
+        @include fluid-type(20px, 25px, 400px, 1200px);
+
+    }    &__item{
+        padding:2em;
+       
+    }
+    &__item:first-child{
+        padding:2em;
+        background-image: url(../images/planets/background2.jpg);
+        background-position:left;
+    }
+    &__item:nth-child(even){
+        padding:2em;
+        background-image: url(../images/planets/background2.jpg);
+        background-position:top;
+    }
+    &__item:last-child{
+        padding:2em;
+        background-image: url(../images/planets/background2.jpg);
+        background-position:right bottom;
+    }
+    
+}
+
+footer{
+    margin-top:10px;
+    padding:1em;
+    background-color: rgba(0, 0, 0, 0.644);
+    color:white;
+    text-align: center;
+}
+
+//other media queries------------------------------------
+
+
+   
